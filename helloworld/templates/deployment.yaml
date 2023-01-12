@@ -27,6 +27,10 @@ items:
           heritage: {{ .Release.Service | quote }}
           version: 1.0.0
       spec:
+        tolerations:
+          - key: "node-role.kubernetes.io/lge-robot-control-qa"
+            operator: "Exists"
+            effect: "NoSchedule"
         containers:
         - image: "{{ .Values.helloworld.image.name }}:{{ .Values.helloworld.image.tag }}"
           imagePullPolicy: {{ .Values.helloworld.image.pullPolicy }}
